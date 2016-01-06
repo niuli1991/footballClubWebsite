@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160105115512) do
+ActiveRecord::Schema.define(version: 20160105123022) do
 
   create_table "announcements", force: :cascade do |t|
-    t.string   "content",     limit: 255
-    t.string   "annou_type",  limit: 255
-    t.integer  "user_id",     limit: 4,   null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.string   "annou_title", limit: 255
+    t.text     "content",     limit: 65535,              null: false
+    t.string   "annou_type",  limit: 255,   default: "", null: false
+    t.integer  "user_id",     limit: 4,                  null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.string   "annou_title", limit: 255,   default: "", null: false
+    t.string   "remark",      limit: 255
   end
 
   add_index "announcements", ["user_id"], name: "index_announcements_on_user_id", using: :btree
@@ -30,20 +31,22 @@ ActiveRecord::Schema.define(version: 20160105115512) do
     t.string   "guest_team",   limit: 255
     t.date     "kick_of_time"
     t.string   "place",        limit: 255
-    t.integer  "user_id",      limit: 4,   null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "user_id",      limit: 4,     null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.text     "remark",       limit: 65535
   end
 
   add_index "matches", ["user_id"], name: "index_matches_on_user_id", using: :btree
 
   create_table "news", force: :cascade do |t|
     t.string   "new_title",   limit: 255
-    t.string   "new_content", limit: 255
+    t.text     "new_content", limit: 65535
     t.string   "new_type",    limit: 255
-    t.integer  "user_id",     limit: 4,   null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "user_id",     limit: 4,     null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "remark",      limit: 255
   end
 
   add_index "news", ["user_id"], name: "index_news_on_user_id", using: :btree
