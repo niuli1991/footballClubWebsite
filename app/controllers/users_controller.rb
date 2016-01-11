@@ -1,18 +1,11 @@
 class UsersController < ApplicationController
+  layout "user_layout"
   def index
-  end
-
-  def show
-  end
-
-  def update
   end
 
   def create
   end
 
-  def delete
+  def destroy
   end
-
-
 end
