@@ -48,6 +48,9 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'rspec-rails'
+  gem 'rails_db'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 end
 
 
