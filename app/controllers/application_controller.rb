@@ -36,6 +36,10 @@ class ApplicationController < ActionController::Base
   		users_path
   	end
 
+    def after_sign_out_path_for(resource)
+      new_user_session_path
+    end
+
   private
   	def create_guest_user
 	    u = User.create(:name => "guest", :email => "guest_#{Time.now.to_i}#{rand(100)}@example.com")
