@@ -1,0 +1,37 @@
+<div class="container">
+	<table class="table table-condensed">
+		<thead>
+			<th>公告标题</th>
+			<th>公告类型</th>
+			<th>创建人</th>
+			<th>创建时间</th>
+			<th>操作</th>
+		</thead>
+		<tbody>
+			<% @announcements.each do |announcement|%>
+			<tr>
+				<td>
+					<%= link_to announcement.annou_title, announcement %>
+				</td>
+				<td>
+					<%= announcement.annou_type%>
+				</td>
+				<td>
+					<%= announcement.user_id%>
+				</td>
+				<td>
+					<%= time_ago_in_words(announcement.created_at)%>
+				</td>
+				<td>
+					<%= link_to "编辑", edit_announcement_path(announcement)%>
+					<%= link_to "删除", announcement, method: :delete, data: {confirm: 'Are you sure?'}%>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+<br>
+<% if user_signed_in? %>
+  <%= link_to '创建公告', new_announcement_path %>
+<% end %>

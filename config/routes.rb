@@ -1,21 +1,17 @@
 Rails.application.routes.draw do
-
-  get 'users/index'
-
-  get 'users/create'
-
-  get 'users/destroy'
-
   devise_for :admins
   devise_for :users, controllers: {sessions: "users/sessions", confirmations: "users/confirmations", registrations: "users/registrations"}
-  resources :users
-  get 'vistors/index'
+  resources :users, :news, :matches, :announcements
+  
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'vistors#index'
+
+  post 'upload' => 'upload#image'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

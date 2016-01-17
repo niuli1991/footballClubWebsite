@@ -1,0 +1,47 @@
+<%= form_for(@news) do |f| %>
+  <% if @news.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@news.errors.count, "error") %> prohibited this new from being saved:</h2>
+
+      <ul>
+      <% @news.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :news_title, "新闻标题" %>
+    <%= f.text_field :news_title,  style: "width:50%" %>
+
+  </div>
+  <div class="form-group">
+  	<%= f.label :news_type, "新闻类型" %>
+  	<%= select("news","news_type",options_for_select(["赛事新闻","转会新闻"]))%>
+  </div>
+  <div class="form-group">
+    <%= f.label :news_content, "内容" %><br>
+    <%= f.text_area :news_content, class: "textarea" %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "保存"%>
+  </div>
+<% end %>
+<script type="text/javascript">
+    var editor = new Simditor({
+      textarea: $('#news_news_content'),
+      toolbar: [
+        'title','bold','italic','underline','strikethrough','color','|',
+        'ol','ul','blockquote','code','table','link','image','hr','|',
+        'indent','outdent'
+      ],
+      pasteImage: true,
+      placeholder: '请输入正文',
+      defaultImage: '<%= image_path "upload-loading.png"%>',
+      upload: {
+        url: '/upload',
+        leaveConfirm: '正在上传文件，如果离开上传会自动取消'
+      }
+    })
+    </script>

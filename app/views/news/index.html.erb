@@ -1,0 +1,32 @@
+<div class="container">
+<table class="table table-condensed">
+	<thead>
+		<th>新闻标题</th>
+		<th>新闻类型</th>
+		<th>创建人</th>
+		<th>创建时间</th>
+		<th>操作</th>
+	</thead>
+	<tbody>
+		<% @news.each do |new| %>
+			<tr>
+				<td><%= link_to new.news_title, new %></td>
+				<td><%= new.news_type %></td>
+				<td><%= new.user_id %></td>
+				<td><%= time_ago_in_words(new.created_at) %></td>
+				<td>
+          <% if user_signed_in? %>
+            <%= link_to '编辑', edit_news_path(new) %>
+            <%= link_to '删除', new, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+</div>
+
+<br>
+<% if user_signed_in? %>
+  <%= link_to '创建新闻', new_news_path %>
+<% end %>

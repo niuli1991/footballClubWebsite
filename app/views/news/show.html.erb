@@ -1,0 +1,16 @@
+
+<p class="text-center">
+  <strong><%= @news.news_title %></strong>
+</p>
+
+<p >
+  
+  <%= @news.news_content.html_safe %>
+  
+</p>
+
+<% if user_signed_in? %>
+    <%= link_to '编辑', edit_news_path(@news) %> | <%= link_to '返回新闻列表', news_index_path %>
+<% else %>
+	<%= link_to '返回新闻列表', news_index_path %>
+<% end %>

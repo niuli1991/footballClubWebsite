@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require simditor
  */
 body {
   padding-top: 20px;

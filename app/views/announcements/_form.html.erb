@@ -1,0 +1,47 @@
+ <%= form_for(@announcement) do |f| %>
+  <% if @announcement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@announcement.errors.count, "error") %> prohibited this announcement from being saved:</h2>
+
+      <ul>
+      <% @announcement.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :annou_title, "公告标题" %>
+    <%= f.text_field :annou_title,  style: "width:50%" %>
+
+  </div>
+  <div class="form-group">
+  	<%= f.label :annou_type, "公告类型" %>
+  	<%= select("announcement","annou_type",options_for_select(["赛事公告","转会公告","票务公告"]))%>
+  </div>
+  <div class="form-group">
+    <%= f.label :content, "公告内容" %><br>
+    <%= f.text_area :content, class: "textarea" %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "保存"%>
+  </div>
+<% end %>
+<script type="text/javascript">
+    var editor = new Simditor({
+      textarea: $('#announcement_content'),
+      toolbar: [
+        'title','bold','italic','underline','strikethrough','color','|',
+        'ol','ul','blockquote','code','table','link','image','hr','|',
+        'indent','outdent'
+      ],
+      pasteImage: true,
+      placeholder: '请输入正文',
+      defaultImage: '<%= image_path "upload-loading.png"%>',
+      upload: {
+        url: '/upload',
+        leaveConfirm: '正在上传文件，如果离开上传会自动取消'
+      }
+    })
+    </script>

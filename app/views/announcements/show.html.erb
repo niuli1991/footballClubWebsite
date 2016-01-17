@@ -1,0 +1,16 @@
+
+<p class="text-center">
+  <strong><%= @announcement.annou_title %></strong>
+</p>
+
+<p >
+  
+  <%= @announcement.content.html_safe %>
+  
+</p>
+
+<% if user_signed_in? %>
+    <%= link_to '编辑', edit_announcement_path(@announcement) %> | <%= link_to '返回公告列表', announcements_path %>
+<% else %>
+	<%= link_to '返回公告列表', announcements_path %>
+<% end %>
