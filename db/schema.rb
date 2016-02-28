@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114130501) do
+ActiveRecord::Schema.define(version: 20160218120608) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -53,18 +53,21 @@ ActiveRecord::Schema.define(version: 20160114130501) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.text     "remark",       limit: 65535
+    t.string   "match_title",  limit: 255
+    t.string   "host_image",   limit: 255
+    t.string   "guest_image",  limit: 255
   end
 
   add_index "matches", ["user_id"], name: "index_matches_on_user_id", using: :btree
 
   create_table "news", force: :cascade do |t|
-    t.string   "new_title",   limit: 255
-    t.text     "new_content", limit: 65535
-    t.string   "new_type",    limit: 255
-    t.integer  "user_id",     limit: 4,     null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.string   "remark",      limit: 255
+    t.string   "news_title",   limit: 255
+    t.text     "news_content", limit: 65535
+    t.string   "news_type",    limit: 255
+    t.integer  "user_id",      limit: 4,     null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "remark",       limit: 255
   end
 
   add_index "news", ["user_id"], name: "index_news_on_user_id", using: :btree
@@ -73,7 +76,7 @@ ActiveRecord::Schema.define(version: 20160114130501) do
     t.string   "image",      limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.integer  "user_id",    limit: 4
+    t.integer  "user_id",    limit: 4,   null: false
   end
 
   add_index "pictures", ["user_id"], name: "index_pictures_on_user_id", using: :btree

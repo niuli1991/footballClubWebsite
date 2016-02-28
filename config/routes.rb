@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :admins
   devise_for :users, controllers: {sessions: "users/sessions", confirmations: "users/confirmations", registrations: "users/registrations"}
   resources :users, :news, :matches, :announcements

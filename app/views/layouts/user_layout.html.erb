@@ -4,9 +4,14 @@
 	<title>FootballClubWebsite</title>
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' =>
 	true %>
+	<%= stylesheet_link_tag    'application', media: 'all', 'bootstrap-datetimepicker.min.css' =>
+	true %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' =>
 	true %>
-	<%= csrf_meta_tags %></head>
+	<%= javascript_include_tag 'application', 'bootstrap-datetimepicker.min.js' =>
+	true %>
+	<%= csrf_meta_tags %>
+	</head>
 <body>
 	<nav class="navbar navbar-default navbar-static-top"  style="margin:0">
 		<div class="container">
@@ -48,9 +53,11 @@
 				</div>
 				
 					<%= render 'layouts/messages' %>
-
-         <%= yield %>
+				</div>
+			</nav>
+			<div class="container">
+				<%= yield %>
 			</div>
-
+         
 			</body>
 		</html>

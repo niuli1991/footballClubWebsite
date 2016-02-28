@@ -1,0 +1,47 @@
+<%= form_for(@match, html: {multipart: true}) do |f| %>
+	<div class="container">
+	<div class="form-group">
+		<%= f.label :math_type, "比赛类型" %>
+		<%= select("math_type","math_type",options_for_select(["热身赛","友谊赛","中甲联赛","中超联赛","足协杯","超级杯","亚冠联赛"]))%>
+	</div>
+	<div class="form-group">
+		<%= f.label :host_image, "主队队徽" %>
+		<%= f.file_field :host_image %>
+	</div>
+	<div class="form-group">
+		<%= f.label :guest_image, "客队会徽" %>
+		<%= f.file_field :guest_image %>
+	</div>
+	<div class="row">
+        <div class='col-sm-2'>
+	<div class="form-group">
+		<div class='input-group date' id='datetimepicker'>
+         
+		<%= f.text_field :kick_of_time, class: "form-control" %>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+	</div>
+	<div class="form-group">
+		<%= f.label :place, "比赛地点" %>
+		<%= f.text_field :place %>
+	</div>
+	<div class="actions">
+    	<%= f.submit "保存"%>
+  	</div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+	$(function () {
+                $('#datetimepicker').datetimepicker({
+                    format: 'yyyy-mm-dd hh:ii:ss'
+                });
+                $('#datetimepicker1').datetimepicker({
+                    format: 'yyyy-mm-dd hh:ii:ss'
+                });
+            });
+</script>
