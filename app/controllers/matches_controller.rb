@@ -1,6 +1,6 @@
 class MatchesController < ApplicationController
   before_action :authenticate_user!, expect: [:index, :show]
-  before_action :set_announcement, only: [:show, :edit, :update, :destroy]
+  before_action :set_match, only: [:show, :edit, :update, :destroy]
   layout "user_layout"
   def index
   	@matches = Match.all
@@ -43,7 +43,7 @@ class MatchesController < ApplicationController
 
   private
     def match_params
-      params.require(:match).permit(:match_type, :host_team, :guest_team, :kick_of_time, :host_image, :guest_image, :place)
+      params.require(:match).permit(:match_title,:match_type, :host_team, :guest_team, :kick_of_time, :host_image, :guest_image, :place)
     end
 
     def set_match

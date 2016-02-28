@@ -1,12 +1,35 @@
 <%= form_for(@match, html: {multipart: true}) do |f| %>
+<% if @match.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@match.errors.count, "error") %> prohibited this match from being saved:</h2>
+
+      <ul>
+      <% @match.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 	<div class="container">
 	<div class="form-group">
+		<%= f.label :match_title, "比赛标题" %>
+		<%= f.text_field :match_title %>
+	</div>
+	<div class="form-group">
 		<%= f.label :math_type, "比赛类型" %>
-		<%= select("math_type","math_type",options_for_select(["热身赛","友谊赛","中甲联赛","中超联赛","足协杯","超级杯","亚冠联赛"]))%>
+		<%= select("match","match_type",options_for_select(["热身赛","友谊赛","中甲联赛","中超联赛","足协杯","超级杯","亚冠联赛"]))%>
+	</div>
+	<div class="form-group">
+		<%= f.label :host_team, "主队名称" %>
+		<%= f.text_field :host_team %>
 	</div>
 	<div class="form-group">
 		<%= f.label :host_image, "主队队徽" %>
 		<%= f.file_field :host_image %>
+	</div>
+	<div class="form-group">
+		<%= f.label :guest_team, "客队名称" %>
+		<%= f.text_field :guest_team %>
 	</div>
 	<div class="form-group">
 		<%= f.label :guest_image, "客队会徽" %>
@@ -40,8 +63,5 @@
                 $('#datetimepicker').datetimepicker({
                     format: 'yyyy-mm-dd hh:ii:ss'
                 });
-                $('#datetimepicker1').datetimepicker({
-                    format: 'yyyy-mm-dd hh:ii:ss'
-                });
-            });
+                
 </script>

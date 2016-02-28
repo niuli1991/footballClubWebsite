@@ -11,22 +11,24 @@
 		<tbody>
 			<% @matches.each do |match|%>
 				<tr>
-					<%= match.match_title%>
-				</tr>
-				<tr>
-					<%= match.match_type%>
-				</tr>
-				<tr>
-					<%= match.host_team%>
-				</tr>
-				<tr>
-					<%= match.guest_team%>
-				</tr>
-				<tr>
-					<%= match.kick_of_time%>
-				</tr>
-				<tr>
-					<%= match.user_id%>
+					<td>
+						<%= match.match_title%>
+					</td>
+					<td>
+						<%= match.match_type%>
+					</td>
+					<td>
+						<%= match.host_team%>
+					</td>
+					<td>
+						<%= match.guest_team%>
+					</td>
+					<td>
+						<%= match.kick_of_time%>
+					</td>
+					<td>
+						<%= match.user_id%>
+					</td>
 				</tr>
 			<%end%>
 		</tbody>
