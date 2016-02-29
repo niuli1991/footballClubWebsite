@@ -1,5 +1,5 @@
 class AnnouncementsController < ApplicationController
-  before_action :authenticate_user!, expect: [:index, :show]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
   before_action :set_announcement, only: [:show, :edit, :update, :destroy]
   layout "user_layout"
   def new
@@ -23,7 +23,7 @@ class AnnouncementsController < ApplicationController
   end
 
   def index
-    @announcements = Announcement.all
+    @announcements = Announcement.paginate(page: params[:page],per_page:10)
   end
 
   def update

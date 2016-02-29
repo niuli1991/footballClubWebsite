@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  
   layout "user_layout"
   def index
   	@users = User.all

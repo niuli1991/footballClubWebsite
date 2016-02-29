@@ -1,9 +1,10 @@
 class MatchesController < ApplicationController
-  before_action :authenticate_user!, expect: [:index, :show]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
   before_action :set_match, only: [:show, :edit, :update, :destroy]
+
   layout "user_layout"
   def index
-  	@matches = Match.all
+  	@matches = Match.paginate(page: params[:page],per_page:10)
   end
 
   def new
@@ -18,10 +19,10 @@ class MatchesController < ApplicationController
       respond_to do |format|
         if @match.save
           format.html { redirect_to @match, notice: 'Match was successfully created.' }
-        format.json { render :show, status: :created, location: @match }
+          format.json { render :show, status: :created, location: @match }
         else
           format.html { render :new }
-        format.json { render json: @match_params.errors, status: :unprocessable_entity }
+          format.json { render json: @match_params.errors, status: :unprocessable_entity }
         end
       end
   end
@@ -35,6 +36,14 @@ class MatchesController < ApplicationController
           format.html { render :edit }
           format.json { render json: @match.errors, status: :unprocessable_entity }
         end
+    end
+  end
+
+  def destroy
+    @match.destroy!
+    respond_to do |format|
+      format.html { redirect_to matches_path, notice: 'Match was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 
