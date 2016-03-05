@@ -1,11 +1,11 @@
 class NewsController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
   before_action :set_news, only: [:show, :edit, :update, :destroy]
   
   
   layout "user_layout"
   def index
-    @news = News.paginate(page: params[:page],per_page:10)
+    @news = News.order(created_at: :desc).paginate(page: params[:page],per_page:10)
   end
 
   def new

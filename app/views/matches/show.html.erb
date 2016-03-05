@@ -1,2 +1,47 @@
-<h1>Matches#show</h1>
-<p>Find me in app/views/matches/show.html.erb</p>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-5" align="center">
+			<h3>
+				<%= @match.host_team%>
+			</h3>
+		</div>
+		<div class="col-md-2">
+			<div class="form-group">
+				<h3><%= @match.match_title %></h3>
+			</div>
+		</div>
+		<div class="col-md-5" align="center">
+			<h3>
+				<%= @match.guest_team%>
+			</h3>
+			
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5">
+			<%= image_tag @match.host_image, alt: @match.host_team , width: "120px", height: "120px"%>
+		</div>
+		<div class="col-md-2">
+			<div style="margin-top:30px">
+				
+				<div class="form-group">
+					<%= @match.kick_of_time.strftime("%Y-%m-%d %H:%M")%>
+				</div>
+				<div class="form-group">
+					<%= @match.place%>
+				</div>
+			</div>
+			
+		</div>
+		<div class="col-md-5">
+			<%= image_tag @match.guest_image, alt: @match.guest_team, width: "120px", height: "120px"%>
+		</div>
+	</div>
+</div>
+
+<% if user_signed_in? %>
+    <%= link_to '编辑', edit_match_path(@match) %> | <%= link_to '返回赛事列表', matches_path %>
+<% else %>
+	<%= link_to '返回赛事列表', matches_path %>
+<% end %>

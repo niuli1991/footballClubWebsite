@@ -1,10 +1,10 @@
 class MatchesController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
   before_action :set_match, only: [:show, :edit, :update, :destroy]
 
   layout "user_layout"
   def index
-  	@matches = Match.paginate(page: params[:page],per_page:10)
+  	@matches = Match.order(created_at: :desc).paginate(page: params[:page],per_page:10)
   end
 
   def new

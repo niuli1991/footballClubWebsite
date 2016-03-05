@@ -28,7 +28,7 @@
 						<%= match.guest_team%>
 					</td>
 					<td>
-						<%= match.kick_of_time%>
+						<%= match.kick_of_time.strftime("%Y-%m-%d %H:%M")%>
 					</td>
 					<% if user_signed_in? %>
 						<td>

@@ -35,18 +35,10 @@
 		<%= f.label :guest_image, "客队会徽" %>
 		<%= f.file_field :guest_image %>
 	</div>
-	<div class="row">
-        <div class='col-sm-2'>
+	
 	<div class="form-group">
-		<div class='input-group date' id='datetimepicker'>
-         
-		<%= f.text_field :kick_of_time, class: "form-control" %>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
+		<%= f.label :kick_of_time, "开赛时间" %>
+		<%= f.text_field :kick_of_time, type: "datetime-local" %>
 	</div>
 	<div class="form-group">
 		<%= f.label :place, "比赛地点" %>
@@ -57,11 +49,3 @@
   	</div>
   </div>
 <% end %>
-
-<script type="text/javascript">
-	$(function () {
-                $('#datetimepicker').datetimepicker({
-                    format: 'yyyy-mm-dd hh:ii:ss'
-                });
-                
-</script>
