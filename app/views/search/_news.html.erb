@@ -1,0 +1,26 @@
+<thead>
+	<th>新闻标题</th>
+	<th>新闻类型</th>
+	<th>创建时间</th>
+	<% if user_signed_in? %>
+	<th>创建人</th>
+	<th>操作</th>
+	<%end%></thead>
+<tbody>
+	<% @search.each do |new| %>
+	<tr>
+		<td>
+			<%= link_to new.news_title, new %></td>
+		<td>
+			<%= new.news_type %></td>
+		<td>
+			<%= time_ago_in_words(new.created_at) %></td>
+
+		<% if user_signed_in? %>
+		<td>
+			<%= new.user_id %></td>
+		<td>
+			<%= link_to '编辑', edit_news_path(new) %>
+			<%= link_to '删除', new, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<% end %></tr>
+	<% end %></tbody>

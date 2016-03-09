@@ -1,0 +1,36 @@
+
+
+<thead>
+	<th>比赛标题</th>
+	<th>比赛类型</th>
+	<th>主队</th>
+	<th>客队</th>
+	<th>比赛时间</th>
+	<th>比分</th>
+	<% if user_signed_in? %>
+	<th>创建人</th>
+	<th>操作</th>
+	<%end%></thead>
+<tbody>
+	<% @search.each do |match|%>
+	<tr>
+		<td>
+			<%= link_to match.match_title, match %></td>
+		<td>
+			<%= match.match_type%></td>
+		<td>
+			<%= match.host_team%></td>
+		<td>
+			<%= match.guest_team%></td>
+		<td>
+			<%= match.kick_of_time.strftime("%Y-%m-%d %H:%M")%></td>
+		<td>
+			<%= match.football_scores%></td>
+		<% if user_signed_in? %>
+		<td>
+			<%= match.user_id%></td>
+		<td>
+			<%= link_to "编辑", edit_match_path(match)%>
+			<%= link_to "删除", match, method: :delete, data: {confirm: 'Are you sure?'}%></td>
+		<%end%></tr>
+	<%end%></tbody>

@@ -1,12 +1,46 @@
 <div class="container">
+<% if user_signed_in? %>
+	<%= form_tag('/search_match', remote: true, id: 'search_match') do%>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="form-class">
+						<%= label_tag(:math_type, "比赛类型")%>
+						<%= select("search_match","match_type",options_for_select(["热身赛","友谊赛","中甲联赛","中超联赛","足协杯","超级杯","亚冠联赛"]))%>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-class">
+						<%= label_tag(:start, "开始时间")%>
+						<%= datetime_local_field(:search_match, :start)%>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-class">
+						<%= label_tag(:end, "结束时间")%>
+						<%= datetime_local_field(:search_match, :end)%>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-class">
+						<%= submit_tag("查询")%>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+	<%end%>
+<%end%>
 	<%= will_paginate %>
-	<table class="table table-condensed">
+	<table class="table table-condensed" id="match_list">
 		<thead>
 			<th>比赛标题</th>
 			<th>比赛类型</th>
 			<th>主队</th>
 			<th>客队</th>
 			<th>比赛时间</th>
+			<th>比分</th>
 			<% if user_signed_in? %>
 				<th>创建人</th>
 				<th>操作</th>
@@ -16,7 +50,7 @@
 			<% @matches.each do |match|%>
 				<tr>
 					<td>
-						<%= match.match_title%>
+						<%= link_to match.match_title, match %>
 					</td>
 					<td>
 						<%= match.match_type%>
@@ -29,6 +63,9 @@
 					</td>
 					<td>
 						<%= match.kick_of_time.strftime("%Y-%m-%d %H:%M")%>
+					</td>
+					<td>
+						<%= match.football_scores%>
 					</td>
 					<% if user_signed_in? %>
 						<td>
@@ -45,3 +82,22 @@
 	</table>
 	<%= will_paginate %>
 </div>
+<br>
+<% if user_signed_in? %>
+  <%= link_to '创建赛事', new_match_path %>
+<% end %>
+<script type="text/javascript">
+	function submit(){
+		$.ajax({
+            type:"post",
+            url:"/search_match",
+            dataType:"json",
+            success:function(data){
+                alert("success");
+            },
+            error:function(){
+                alert("error");
+            }
+        });
+	}
+</script>

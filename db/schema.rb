@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218120608) do
+ActiveRecord::Schema.define(version: 20160305083833) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -44,18 +44,19 @@ ActiveRecord::Schema.define(version: 20160218120608) do
   add_index "announcements", ["user_id"], name: "index_announcements_on_user_id", using: :btree
 
   create_table "matches", force: :cascade do |t|
-    t.string   "match_type",   limit: 255
-    t.string   "host_team",    limit: 255
-    t.string   "guest_team",   limit: 255
-    t.date     "kick_of_time"
-    t.string   "place",        limit: 255
-    t.integer  "user_id",      limit: 4,     null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.text     "remark",       limit: 65535
-    t.string   "match_title",  limit: 255
-    t.string   "host_image",   limit: 255
-    t.string   "guest_image",  limit: 255
+    t.string   "match_type",      limit: 255
+    t.string   "host_team",       limit: 255
+    t.string   "guest_team",      limit: 255
+    t.datetime "kick_of_time"
+    t.string   "place",           limit: 255
+    t.integer  "user_id",         limit: 4,                  null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.text     "remark",          limit: 65535
+    t.string   "match_title",     limit: 255,   default: ""
+    t.string   "host_image",      limit: 255
+    t.string   "guest_image",     limit: 255
+    t.string   "football_scores", limit: 255
   end
 
   add_index "matches", ["user_id"], name: "index_matches_on_user_id", using: :btree

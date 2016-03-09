@@ -9,11 +9,20 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
+  #首页
   root 'vistors#index'
 
+  #上传图片
   post 'upload' => 'upload#image'
 
+  #赛事查找
+  post 'search_match' => 'search#search_match'
+
+  #新闻查找
+  post 'search_news' => 'search#search_news'
+
+  #公告查找
+  post 'search_announcement' => 'search#search_announcement'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

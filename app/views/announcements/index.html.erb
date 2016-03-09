@@ -1,6 +1,37 @@
 <div class="container">
+<% if user_signed_in? %>
+	<%= form_tag('/search_announcement', remote: true, id: 'search_announcement') do%>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="form-class">
+						<%= label_tag(:annou_type, "比赛类型")%>
+						<%= select("search_announcement","annou_type",options_for_select(["赛事公告","转会公告","票务公告"]))%>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-class">
+						<%= label_tag(:start, "开始时间")%>
+						<%= datetime_local_field(:search_announcement, :start)%>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-class">
+						<%= label_tag(:end, "结束时间")%>
+						<%= datetime_local_field(:search_announcement, :end)%>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-class">
+						<%= submit_tag("查询")%>
+					</div>
+				</div>
+			</div>
+		</div>
+	<%end%>			
+<%end%>
 	<%= will_paginate %>
-	<table class="table table-condensed">
+	<table class="table table-condensed" id="announcement_list">
 		<thead>
 			<th>公告标题</th>
 			<th>公告类型</th>
