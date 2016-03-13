@@ -51,6 +51,8 @@ group :development, :test do
   gem 'rails_db'
   gem 'binding_of_caller'
   gem 'meta_request'
+  gem 'capybara'
+  gem 'database_cleaner'
 end
 
 
