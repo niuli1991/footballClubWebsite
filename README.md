@@ -1,28 +1,13 @@
-== README
+###足球俱乐部网站
+***
+#####网站架构
+* 开发语言：ruby
+* 开发框架：ruby on rails
+* 测试框架：rspec
+* 页面布局框架：bootstrap
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+#####网站功能模块
+* 赛事管理模块
+* 新闻管理模块
+* 公告管理模块
+* 用户管理模块
