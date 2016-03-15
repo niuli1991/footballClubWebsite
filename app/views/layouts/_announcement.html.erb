@@ -1,6 +1,6 @@
 
     <h3>最新公告</h3>
       <p class="text-danger">
-      <%= @announcement.content.html_safe%>
+      <%= sanitize @announcement.content%>
     </p>
  

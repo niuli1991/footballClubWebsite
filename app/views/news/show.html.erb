@@ -5,7 +5,7 @@
 
 <p >
   
-  <%= @news.news_content.html_safe %>
+  <%= sanitize @news.news_content %>
   
 </p>
 

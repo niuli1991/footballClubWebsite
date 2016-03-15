@@ -5,7 +5,7 @@
 
 <p >
   
-  <%= @announcement.content.html_safe %>
+  <%= sanitize @announcement.content %>
   
 </p>
 
